@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Difficulty {
+  EASY
+  PRO
+  INSANE
+}
+
+model Pilot {
+  id          String       @id @default(cuid())
+  displayName String
+  team        String?
+  avatarUrl   String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  results     RaceResult[]
+}
+
+model Circuit {
+  id             String     @id @default(cuid())
+  name           String
+  location       String
+  difficulty     Difficulty
+  layoutImageUrl String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  races          Race[]
+}
+
+model Race {
+  id        String       @id @default(cuid())
+  circuitId String
+  circuit   Circuit      @relation(fields: [circuitId], references: [id], onDelete: Restrict)
+  label     String
+  heldAt    DateTime
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  results   RaceResult[]
+
+  @@index([heldAt(sort: Desc)])
+}
+
+model RaceResult {
+  id               String @id @default(cuid())
+  raceId           String
+  race             Race   @relation(fields: [raceId], references: [id], onDelete: Cascade)
+  pilotId          String
+  pilot            Pilot  @relation(fields: [pilotId], references: [id], onDelete: Restrict)
+  position         Int
+  bestLapMs        Int
+  /// Average speed (km/h), optional
+  averageSpeedKmh  Float?
+  totalLaps        Int?
+  /// Total race time (ms)
+  totalTimeMs      Int?
+  /// Gap to leader as time (ms); mutually exclusive with gapToLeaderLaps when both set
+  gapToLeaderMs    Int?
+  /// Gap to leader in full laps behind P1
+  gapToLeaderLaps  Int?
+
+  @@unique([raceId, pilotId])
+  @@index([raceId])
+}

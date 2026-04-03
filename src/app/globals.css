@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --surface: #0e0e0e;
+  --surface-container-low: #161616;
+  --surface-container-lowest: #121212;
+  --surface-container-high: #1e1e1e;
+  --surface-container-highest: #282828;
+  --surface-variant: #22262c;
+  --on-surface: #f0f2f5;
+  --on-surface-muted: #b8bcc4;
+  --on-primary: #0e0e0e;
+  --on-background: #f0f2f5;
+  --primary: #ffe792;
+  --primary-container: #ffd709;
+  --primary-dim: #c9b86a;
+  --secondary: #25abfd;
+  --secondary-dim: #1a7a9e;
+  --secondary-container: rgba(37, 171, 253, 0.22);
+  --tertiary: #ff6f7d;
+  --error: #ff7351;
+  --outline-variant: rgba(240, 242, 245, 0.2);
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-muted: var(--on-surface-muted);
+  --color-on-primary: var(--on-primary);
+  --color-on-background: var(--on-background);
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-primary-dim: var(--primary-dim);
+  --color-secondary: var(--secondary);
+  --color-secondary-dim: var(--secondary-dim);
+  --color-secondary-container: var(--secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-error: var(--error);
+  --color-outline-variant: var(--outline-variant);
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface min-h-full antialiased;
+    font-family: var(--font-body);
+  }
+}
+
+@utility display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw + 0.75rem, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+@utility body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+@utility label-md {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@utility btn-primary {
+  @apply inline-flex items-center justify-center px-5 py-3 font-semibold text-on-primary transition-shadow;
+  background: linear-gradient(45deg, var(--primary), var(--primary-container));
+  box-shadow: none;
+}
+
+@utility btn-secondary {
+  @apply inline-flex items-center justify-center px-5 py-3 font-semibold text-on-surface;
+  background: var(--surface-container-highest);
+  border: 2px solid var(--secondary);
+}
+
+@utility ghost-outline {
+  outline: 1px solid var(--outline-variant);
+  outline-offset: 0;
+}
+
+@utility input-bottom {
+  @apply w-full bg-surface-container-lowest px-3 py-2 text-on-surface outline-none transition-colors;
+  border-bottom: 4px solid var(--primary);
+}
+
+@utility input-bottom-focus {
+  background: var(--surface-variant);
+}
+
+@utility input-bottom-error {
+  border-bottom-color: var(--error);
+}
+
+@utility hud-glass {
+  background: var(--secondary-container);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
