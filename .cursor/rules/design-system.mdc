@@ -1,0 +1,81 @@
+---
+alwaysApply: true
+---
+
+# Design System Document
+
+## 1. Overview & Creative North Star: "The Neo-Arcade Kinetic"
+This design system is not a nostalgic reproduction; it is a high-end editorial evolution of 16-bit aesthetics. Our Creative North Star is **"The Neo-Arcade Kinetic."** We are capturing the adrenaline, friction, and saturated energy of SNES-era kart racers and recontextualizing them for a premium digital experience.
+To move beyond "standard" retro kits, we utilize **Intentional Asymmetry** and **Tonal Depth**. While the 16-bit era was defined by hardware limitations, we use those limitations as a stylistic choice to drive high-contrast, editorial layouts. We break the rigid grid by overlapping pixelated containers and using "chunky" typography at aggressive scales. The result is a UI that feels like a playable high-end magazine—fast, tactile, and unapologetically bold.
+
+---
+
+## 2. Colors: High-Octane Saturation
+Our palette is a high-contrast battle between deep "void" blacks and hyper-saturated primaries.
+
+### The "No-Line" Rule
+Traditional 1px solid lines are strictly prohibited for sectioning. In this system, boundaries are defined by "The Step Effect." Use shifts in background tokens (e.g., a `surface-container-low` section sitting on a `surface` background) to create structural definition. This mimics the way sprite layers were handled in 16-bit hardware.
+
+### Surface Hierarchy & Nesting
+We treat the UI as a series of "Bit-Planes."
+- **Base Layer:** `surface` (#0e0e0e)
+- **Nested Content:** Use `surface-container-low` for large content areas.
+- **Interactive Trays:** Use `surface-container-high` or `surface-container-highest` to "lift" elements toward the user.
+- **Glass & Gradient Rule:** For floating HUD elements (Heads-Up Displays), use `secondary-container` with a 20px backdrop-blur and 80% opacity. This creates a "Frosted Pixel" look that feels premium and modern.
+
+### Signature Textures
+Main CTAs must use a linear gradient from `primary` (#ffe792) to `primary-container` (#ffd709) at a 45-degree angle. This simulates the "color cycling" animation found in classic title screens, giving buttons a sense of "soul" and metallic weight.
+
+---
+
+## 3. Typography: Chunky Editorial
+The typography strategy is a collision of technical precision and arcade bravado.
+* **Display & Headlines (Space Grotesk):** This is our "Impact" font. Use `display-lg` (3.5rem) for hero moments. The wide, geometric stance of Space Grotesk mimics the wide-pixel aspect ratio of CRT monitors. It should be tracked tightly (-0.02em) to feel like a solid block of color.
+* **Body & Titles (Be Vietnam Pro):** This provides the functional contrast. It is clean, legible, and slightly technical. Use `body-lg` for long-form content to ensure the "retro" aesthetic doesn't fatigue the eye.
+* **The Hierarchy Role:** Use `label-md` in all-caps with 0.1em letter spacing for metadata. This creates an "instrument cluster" feel common in racing game UIs.
+
+---
+
+## 4. Elevation & Depth: Tonal Layering
+
+In a world of 0px border radii, depth must be achieved through **Tonal Layering** rather than rounded corners or soft shadows.
+- **The Layering Principle:** Stacking is king. Place a `surface-container-lowest` card on a `surface-container-low` section. This creates a "recessed" look, like a cartridge slot.
+- **Ambient Shadows:** We do not use "drop shadows." We use "Sprite Offsets." If an element must float, use a shadow with a 0px blur, 4px offset (down and right), and 40% opacity of the `on-background` color. This creates a hard-edged pixel shadow.
+- **The "Ghost Border" Fallback:** If a container requires a border for accessibility, use the `outline-variant` at 20% opacity. It must look like a faint "grid line" on a blueprint, never a heavy frame.
+- **Pixelated Borders:** For primary elements, use a "stepped" border—a 4px solid stroke of `primary` that only exists on the bottom and right sides, simulating a 3D pixel extrusion.
+
+---
+
+## 5. Components: The Sprite Library
+
+### Buttons
+* **Primary:** 0px radius. Background: `primary` to `primary-container` gradient. Text: `on-primary`. Hover state: 4px "Sprite Offset" shadow.
+* **Secondary:** 0px radius. Background: `surface-container-highest`. Border: 2px `secondary` (#25abfd).
+* **Tertiary:** Text-only in `tertiary` (#ff6f7d), all-caps, with a `>` character (e.g., `> START GAME`).
+
+### Input Fields
+* Forbid standard "box" inputs. Use a "Bottom-Only" heavy stroke (4px) using the `primary` token. When focused, the background should shift to `surface-variant`. Error states use `error` (#ff7351) with a blinking underscore cursor.
+
+### Cards & Lists
+* **The Divider Ban:** Never use horizontal lines. Separate list items using a subtle shift from `surface-container-low` to `surface-container-lowest`. Use 16px of vertical whitespace (the "Bit-Gap") to define groups.
+
+### Progress Bars (The "Boost" Meter)
+* A critical component for this system. Use `secondary` as the fill color, but divide the bar into discrete blocks (8-pixel segments) rather than a smooth continuous fill.
+
+---
+
+## 6. Do's and Don'ts
+
+### Do:
+* **DO** use intentional asymmetry. Offset a headline by 24px to the left of its container to create a "drifting" visual motion.
+* **DO** use hyper-saturated colors for data visualization. A "Red" error isn't just a warning; it’s a "Danger" klaxon from a boss fight.
+* **DO** treat whitespace as "Screen Real Estate." Let elements breathe so the chunky typography doesn't feel cluttered.
+
+### Don't:
+* **DON'T** use 1px solid borders. It shatters the "Neo-Arcade" illusion.
+* **DON'T** use border-radius. Ever. Every element must have a 0px "Hard Edge."
+* **DON'T** use soft, grey shadows. They feel "web-standard" and dilute the high-contrast 16-bit energy.
+* **DON'T** use "Safety Blue" or "Corporate Navy." Use our `secondary` (#25abfd) which has the neon glow of a digital sky.
+
+### Accessibility Note:
+While we use high-contrast vibrant colors, always ensure `on-surface` text maintains a 7:1 ratio against `surface` backgrounds. Use the `primary-dim` and `secondary-dim` tokens for decorative elements that should not distract from the primary reading path.
