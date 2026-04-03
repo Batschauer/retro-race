@@ -12,12 +12,20 @@ export function PublicHeader() {
             CRENTE_RACE
           </span>
         </div>
-        <Link
-          href="/admin/login"
-          className="shrink-0 text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-tertiary hover:text-secondary focus-visible:ghost-outline px-1 py-1 sm:label-md"
-        >
-          &gt; ÁREA_ADMIN
-        </Link>
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Link
+            href="/regulamento"
+            className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-tertiary hover:text-secondary focus-visible:ghost-outline px-1 py-1 sm:label-md"
+          >
+            &gt; REGULAMENTO
+          </Link>
+          <Link
+            href="/admin/login"
+            className="text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-tertiary hover:text-secondary focus-visible:ghost-outline px-1 py-1 sm:label-md"
+          >
+            &gt; ÁREA_ADMIN
+          </Link>
+        </div>
       </div>
     </header>
   );
