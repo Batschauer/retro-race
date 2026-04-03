@@ -15,7 +15,14 @@ export function getPrismaClient(): PrismaClient {
   if (globalForPrisma.prisma) {
     return globalForPrisma.prisma;
   }
-  const pool = globalForPrisma.pool ?? new Pool({ connectionString: url });
+  const pool =
+    globalForPrisma.pool ??
+    new Pool({
+      connectionString: url,
+      max: process.env.NODE_ENV === "development" ? 5 : 10,
+      connectionTimeoutMillis: 8_000,
+      idleTimeoutMillis: 30_000,
+    });
   globalForPrisma.pool = pool;
   const adapter = new PrismaPg(pool);
   const prisma = new PrismaClient({

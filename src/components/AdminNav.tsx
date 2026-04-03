@@ -21,7 +21,7 @@ export function AdminNav() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-surface-container-low px-4 py-4">
+    <header className="bg-surface-container-low px-4 pb-4 pt-[max(1rem,env(safe-area-inset-top,0px))]">
       <div className="mx-auto flex max-w-2xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <nav className="flex flex-wrap gap-3" aria-label="Administração">
           {links.map((l) => {

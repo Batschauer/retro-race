@@ -56,9 +56,11 @@
 @utility display-lg {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 5vw + 0.75rem, 3.5rem);
-  line-height: 1.08;
+  /* Room for ascenders; tight line-height + overflow parents used to clip tops on desktop */
+  line-height: 1.14;
   letter-spacing: -0.02em;
   font-weight: 700;
+  padding-block: 0.06em 0.02em;
 }
 
 @utility body-lg {

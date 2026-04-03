@@ -70,11 +70,11 @@ export default async function RaceDetailPage({ params }: Props) {
       </p>
 
       <div className="mt-8 hidden bg-surface-container-low px-3 py-2 sm:block">
-        <div className="grid grid-cols-[2.5rem_1fr_4rem_5.5rem] gap-2 label-md text-on-surface-muted">
+        <div className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto_auto] items-center gap-x-3 gap-y-1 label-md text-on-surface-muted sm:gap-x-4">
           <span>POS</span>
           <span>PILOTO</span>
-          <span>CLAS</span>
-          <span>VOLTA</span>
+          <span className="whitespace-nowrap">CLAS</span>
+          <span className="whitespace-nowrap text-right">VOLTA</span>
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export default async function RaceDetailPage({ params }: Props) {
                 </div>
               </div>
               <div className="hidden sm:block">
-                <div className="grid grid-cols-[2.5rem_1fr_4rem_5.5rem] items-center gap-2">
+                <div className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto_auto] items-center gap-x-3 gap-y-1 sm:gap-x-4">
                   <span className="font-display text-lg font-bold text-on-surface">
                     {String(r.position).padStart(2, "0")}
                   </span>
@@ -131,8 +131,8 @@ export default async function RaceDetailPage({ params }: Props) {
                       <p className="text-xs text-on-surface-muted">{r.pilot.team}</p>
                     ) : null}
                   </div>
-                  <span className={`label-md ${rankColor}`}>CLASSE_{rank}</span>
-                  <span className="font-mono text-sm text-on-surface tabular-nums">
+                  <span className={`label-md shrink-0 whitespace-nowrap ${rankColor}`}>CLASSE_{rank}</span>
+                  <span className="shrink-0 whitespace-nowrap text-right font-mono text-sm text-on-surface tabular-nums">
                     {formatLapMs(r.bestLapMs)}
                   </span>
                 </div>

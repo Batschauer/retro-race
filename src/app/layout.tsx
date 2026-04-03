@@ -15,8 +15,6 @@ const beVietnam = Be_Vietnam_Pro({
   weight: ["400", "500", "600", "700"],
 });
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Crente Race",
   description: "Histórico de corridas e classificação — Neo-Arcade Kinetic",

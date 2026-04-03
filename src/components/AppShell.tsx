@@ -15,7 +15,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-full flex-col overflow-x-hidden bg-surface">
       <PublicHeader />
-      <main className="relative flex min-w-0 flex-1 flex-col px-3 pb-24 pt-3 min-[400px]:px-4 min-[400px]:pb-28 min-[400px]:pt-4">
+      <main className="relative flex min-w-0 flex-1 flex-col px-3 pb-24 pt-4 min-[400px]:px-4 min-[400px]:pb-28 min-[400px]:pt-5">
         {children}
       </main>
       <LeaderFloatButton />
