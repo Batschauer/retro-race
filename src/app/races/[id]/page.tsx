@@ -30,12 +30,12 @@ function ResultExtraStats({
   if (totalTimeMs != null) {
     parts.push(`tempo total ${formatDurationMs(totalTimeMs)}`);
   }
-  if (gapToLeaderLaps != null && gapToLeaderLaps > 0) {
-    parts.push(`atraso ao líder +${gapToLeaderLaps} volta(s)`);
-  } else if (gapToLeaderMs != null && gapToLeaderMs > 0) {
-    parts.push(`atraso ao líder +${formatDurationMs(gapToLeaderMs)}`);
-  } else if (position === 1) {
-    parts.push("atraso ao líder —");
+  if (position !== 1) {
+    if (gapToLeaderLaps != null && gapToLeaderLaps > 0) {
+      parts.push(`atraso ao líder +${gapToLeaderLaps} volta(s)`);
+    } else if (gapToLeaderMs != null && gapToLeaderMs > 0) {
+      parts.push(`atraso ao líder +${formatDurationMs(gapToLeaderMs)}`);
+    }
   }
 
   if (parts.length === 0) return null;
@@ -73,8 +73,7 @@ export default async function RaceDetailPage({ params }: Props) {
         <div className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto_auto] items-center gap-x-3 gap-y-1 label-md text-on-surface-muted sm:gap-x-4">
           <span>POS</span>
           <span>PILOTO</span>
-          <span className="whitespace-nowrap">CLAS</span>
-          <span className="whitespace-nowrap text-right">VOLTA</span>
+          <span className="whitespace-nowrap text-right">MELHOR_VOLTA</span>
         </div>
       </div>
 
@@ -99,9 +98,6 @@ export default async function RaceDetailPage({ params }: Props) {
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <span className="font-display text-xl font-bold tabular-nums text-on-surface">
                     {String(r.position).padStart(2, "0")}
-                  </span>
-                  <span className={`text-[0.65rem] font-semibold uppercase tracking-[0.08em] ${rankColor}`}>
-                    CLASSE_{rank}
                   </span>
                   <span className="font-mono text-sm text-on-surface">{formatLapMs(r.bestLapMs)}</span>
                 </div>
@@ -131,7 +127,6 @@ export default async function RaceDetailPage({ params }: Props) {
                       <p className="text-xs text-on-surface-muted">{r.pilot.team}</p>
                     ) : null}
                   </div>
-                  <span className={`label-md shrink-0 whitespace-nowrap ${rankColor}`}>CLASSE_{rank}</span>
                   <span className="shrink-0 whitespace-nowrap text-right font-mono text-sm text-on-surface tabular-nums">
                     {formatLapMs(r.bestLapMs)}
                   </span>
